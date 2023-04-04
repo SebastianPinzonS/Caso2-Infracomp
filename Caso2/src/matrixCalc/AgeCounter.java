@@ -24,13 +24,6 @@ public class AgeCounter {
 		}
 	}
 	
-	public void registerNonAccess() {
-		for (int i=7; i>0; i--) {
-			counter[i]=counter[i-1];
-		}
-		counter[0]=0;
-	}
-	
 	public int getValue() {
 		int value = 0;
 		for(int i=0; i<8; i++ ) {
