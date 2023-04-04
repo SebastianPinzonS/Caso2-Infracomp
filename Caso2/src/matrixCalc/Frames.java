@@ -19,7 +19,4 @@ public class Frames {
 		}
 		return false;
 	}
-	public Page replacePage(Page newPage, int index) {
-		oldPage = frameArray 
-	}
 }
