@@ -20,5 +20,5 @@ public class T{
             System.out.println(entry.getKey() + " tiene " + entry.getValue()[0] + "," + + entry.getValue()[1]);
           }
     }
-
+    
 }

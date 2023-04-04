@@ -5,13 +5,12 @@ public class Page {
 	private int intSize;
 	private int disponible;
 	
-	public Page(int oIntSize, int pageSize ) {
-		intSize = oIntSize;
-		pageArray = new int[pageSize/intSize];
-		disponible = pageSize/oIntSize;
+	public Page(int pageSize ) {
+		pageArray = new int[pageSize];
+		disponible = pageSize;
 	}
-	public int getValue(int index) {
-		return pageArray[index/ intSize];
+	public int getValue(int index ) {
+		return pageArray[index];
 	}
 	
 	public boolean putValue(int index, int value) {

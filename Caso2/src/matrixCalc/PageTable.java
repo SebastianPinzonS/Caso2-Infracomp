@@ -67,7 +67,7 @@ public class PageTable {
             }
 
         }
-
+        
     }
 
     public ArrayList<ArrayList<String>> getTablePag() {
