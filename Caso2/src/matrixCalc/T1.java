@@ -32,6 +32,12 @@ public class T1 extends Thread{
                 if (marcos.inPagina(npagina)==false)
                 {
                     marcos.insertPage(npagina);
+                    String valor = " ";
+                    for (int numero:marcos.getFramesPag())
+                    {
+                        valor += numero + ",";
+                    }
+                    System.out.println(valor + ":  " + marcos.getFallos() + "   pag: " + npagina + data);
                 }
 
                 try {
