@@ -6,8 +6,7 @@ public class AgeCounter {
 	
 	public AgeCounter() {
 		counter = new int[8];
-		counter[0]=1;
-		for(int i = 1; i<8; i++) {
+		for(int i = 0; i<8; i++) {
 			counter[i]=0;
 		}
 	}
