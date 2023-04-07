@@ -80,7 +80,7 @@ public class Frames {
 		return false;
 	}
 
-	public void accederFrameDisponible(int tipo, int pframe)
+	public void accederFrameDisponible(int pframe)
 	{
 		frameDisponible = pframe;
 	}
