@@ -1,5 +1,7 @@
 package matrixCalc;
 
+import java.util.Arrays;
+
 public class Frames {
 	private AgeCounter[] frameCounterArray;
 	private int[] framesPag;
@@ -7,14 +9,15 @@ public class Frames {
 	private int frameDisponible;
 	private int[] contadorCiclo;
 	private int fallos;
-	private int numFramesVacios;
+	private boolean fin;
 	
 	public Frames(int oNumFrames) {
+
 		numFrames = oNumFrames;
 		frameCounterArray = new AgeCounter[numFrames];
 		framesPag = new int[numFrames];
 		fallos = 0;
-		numFramesVacios = oNumFrames;
+		fin = false;
 
 		for (int i = 0;i<oNumFrames;i++)
 		{
@@ -29,39 +32,41 @@ public class Frames {
 			contadorCiclo[i] = 0;
 		}
 	}
+
+
+
 	public synchronized void insertPage(int nPage) {
 
 		fallos+=1;
 
-		if(numFramesVacios > 0)
-		{
-			for(int i = 0;i<numFrames;i++)
-			{
-				if(framesPag[i]==-1)
-				{
+		int posicionVacio = -1;
 
-					framesPag[i] = nPage;
-					AgeCounter nuevoContador = new AgeCounter();
-					frameCounterArray[i] = nuevoContador;
-					contadorCiclo[i] = 1;
-					numFramesVacios-=1;
-					break;
-
-				}
+		for (int i = 0; i < framesPag.length; i++) {
+			if (framesPag[i] == -1) {
+				posicionVacio = i;
+				break;
 			}
 		}
 
-		if(numFramesVacios <= 0)
+		if(posicionVacio!=-1)
 		{
-			int frame = accederFrameDisponible(0, 0);
-			framesPag[frame] = nPage;
+			framesPag[posicionVacio] = nPage;
 			AgeCounter nuevoContador = new AgeCounter();
-			frameCounterArray[frame] = nuevoContador;
-			contadorCiclo[frame] = 1;
+			frameCounterArray[posicionVacio] = nuevoContador;
+			contadorCiclo[posicionVacio] = 1;
+		}
+
+		else
+		{
+			int frameDisponible = calcularFrame();
+			framesPag[frameDisponible] = nPage;
+			AgeCounter nuevoContador = new AgeCounter();
+			frameCounterArray[frameDisponible] = nuevoContador;
+			contadorCiclo[frameDisponible] = 1;
 		}
 	}
 
-	public synchronized boolean inPagina(int nPage)
+	public boolean inPagina(int nPage)
 	{
 
 		for(int i = 0;i<numFrames;i++)
@@ -75,18 +80,9 @@ public class Frames {
 		return false;
 	}
 
-	public synchronized int accederFrameDisponible(int tipo, int pframe)
+	public void accederFrameDisponible(int tipo, int pframe)
 	{
-
-		if (tipo == 0)
-		{
-			return frameDisponible;
-		}
-		else
-		{
-			frameDisponible = pframe;
-		}
-		return frameDisponible;
+		frameDisponible = pframe;
 	}
 
 	public synchronized void reiniciarContador() {
@@ -107,7 +103,7 @@ public class Frames {
 		}
 	}
 
-	public synchronized int calcularFrame()
+	public int calcularFrame()
 	{
 		int menor = 256;
 		int menorframe = 0;
@@ -130,9 +126,7 @@ public class Frames {
 	public AgeCounter[] getFrameCounterArray() {
 		return frameCounterArray;
 	}
-	public void setFrameCounterArray(AgeCounter[] frameCounterArray) {
-		this.frameCounterArray = frameCounterArray;
-	}
+
 	public int[] getFramesPag() {
 		return framesPag;
 	}
@@ -148,16 +142,46 @@ public class Frames {
 	public int getFrameDisponible() {
 		return frameDisponible;
 	}
-	public void setFrameDisponible(int frameDisponible) {
-		this.frameDisponible = frameDisponible;
-	}
+
+
+
 	public int[] getContadorCiclo() {
 		return contadorCiclo;
 	}
+
+
+
+	public boolean isFin() {
+		return fin;
+	}
+
+
+
+	public void setFrameCounterArray(AgeCounter[] frameCounterArray) {
+		this.frameCounterArray = frameCounterArray;
+	}
+
+
+
+	public void setFrameDisponible(int frameDisponible) {
+		this.frameDisponible = frameDisponible;
+	}
+
+
+
 	public void setContadorCiclo(int[] contadorCiclo) {
 		this.contadorCiclo = contadorCiclo;
 	}
+
+
+
 	public void setFallos(int fallos) {
 		this.fallos = fallos;
+	}
+
+
+
+	public void setFin(boolean fin) {
+		this.fin = fin;
 	}
 }

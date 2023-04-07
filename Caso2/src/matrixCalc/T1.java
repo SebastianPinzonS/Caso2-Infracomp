@@ -24,6 +24,13 @@ public class T1 extends Thread{
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
 
+                try {
+                    Thread.sleep(2);
+                } catch (InterruptedException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
                 String data = myReader.nextLine();
                 String[] pvirtual = data.split(",");
 
@@ -32,23 +39,12 @@ public class T1 extends Thread{
                 if (marcos.inPagina(npagina)==false)
                 {
                     marcos.insertPage(npagina);
-                    String valor = " ";
-                    for (int numero:marcos.getFramesPag())
-                    {
-                        valor += numero + ",";
-                    }
-                    System.out.println(valor + ":  " + marcos.getFallos() + "   pag: " + npagina + data);
-                }
-
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
                 }
 
             }
             myReader.close();
+            marcos.setFin(true);
+            System.out.println(marcos.getFallos());
             } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
