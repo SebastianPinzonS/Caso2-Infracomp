@@ -66,7 +66,7 @@ public class Frames {
 		}
 	}
 
-	public boolean inPagina(int nPage)
+	public synchronized boolean inPagina(int nPage)
 	{
 
 		for(int i = 0;i<numFrames;i++)
@@ -80,7 +80,7 @@ public class Frames {
 		return false;
 	}
 
-	public void accederFrameDisponible(int pframe)
+	public synchronized void accederFrameDisponible(int pframe)
 	{
 		frameDisponible = pframe;
 	}
@@ -103,7 +103,7 @@ public class Frames {
 		}
 	}
 
-	public int calcularFrame()
+	public synchronized int calcularFrame()
 	{
 		int menor = 256;
 		int menorframe = 0;

@@ -41,6 +41,11 @@ public class MainTest {
         try {
           myWriter = new FileWriter("Modo1.txt");
           PrintWriter printWriter = new PrintWriter(myWriter);
+          printWriter.print("TP= " +tpagina+ "\n");
+          printWriter.print("NF= " +filas+ "\n");
+          printWriter.print("NC= " +columnas+ "\n");
+          printWriter.print("NR= " +mapa.size()+ "\n");
+          printWriter.print("MP= " +nframes+ "\n");
             for(int i=0;i<filas;i++)
             {
               for(int j=0;j<columnas;j++)
@@ -55,7 +60,6 @@ public class MainTest {
             }
           printWriter.close();
           myWriter.close();
-          System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
           System.out.println("An error occurred.");
           e.printStackTrace();
@@ -64,8 +68,8 @@ public class MainTest {
         Frames mainFrames = new Frames(nframes);
         T1 t1 = new T1("Modo1.txt",mainFrames);
         T2 t2 = new T2(mainFrames,filas,columnas);
-        t2.start();
         t1.start();
+        t2.start();
 
     }
 }

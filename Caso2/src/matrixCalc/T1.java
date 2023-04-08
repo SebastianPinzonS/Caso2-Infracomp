@@ -24,27 +24,32 @@ public class T1 extends Thread{
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
 
-                try {
-                    Thread.sleep(2);
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
                 String data = myReader.nextLine();
-                String[] pvirtual = data.split(",");
-
-                int npagina = Integer.valueOf(pvirtual[3]);
-
-                if (marcos.inPagina(npagina)==false)
+                if(data.contains("=")==false)
                 {
-                    marcos.insertPage(npagina);
+
+                    try {
+                        Thread.sleep(2);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+                    String[] pvirtual = data.split(",");
+
+                    int npagina = Integer.valueOf(pvirtual[3]);
+
+                    if (marcos.inPagina(npagina)==false)
+                    {
+                        marcos.insertPage(npagina);
+                    }
+
                 }
 
             }
             myReader.close();
             marcos.setFin(true);
-            System.out.println(marcos.getFallos());
+            System.out.println("Numero de fallos de pagina = "+marcos.getFallos());
             } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
