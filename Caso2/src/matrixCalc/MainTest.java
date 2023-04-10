@@ -1,5 +1,7 @@
 package matrixCalc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,27 +13,71 @@ public class MainTest {
 	public static AgeCounter ageCounter = new AgeCounter();
 
   public static FileWriter myWriter;
-	
-	public static void main(String[] args) {
+
+  public  static int columnas;
+
+  public  static int tentero;
+
+  public  static int tpagina;
+
+  public  static int nframes;
+
+  public static void main(String[] args) throws FileNotFoundException {
         
         PageTable paginas = new PageTable();
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Ingrese numero de filas");
-        Integer filas = Integer.valueOf(myObj.nextLine());
+        System.out.println("Ingrese el nombre del archivo de entreda del modo 1 ( Porfavor guardar archivo en la acarpte llamada data)");
+        String archivoNombre = myObj.nextLine();
 
-        System.out.println("Ingrese numero de columnas");
-        Integer columnas = Integer.valueOf(myObj.nextLine());
+        System.out.println("Ahora dijite 1 si solo desea ejecutar el modo 1 o 2 si desea ejecutar el modo 2");
+        Integer opcionModo = Integer.valueOf(myObj.nextLine());
 
-        System.out.println("Ingrese numero de tamaño de entero");
-        Integer tentero = Integer.valueOf(myObj.nextLine());
+        File myObj1 = new File("./data/" + archivoNombre);
+        Scanner myReader = new Scanner(myObj1);
 
-        System.out.println("Ingrese numero de tamaño de pagina");
-        Integer tpagina = Integer.valueOf(myObj.nextLine());
+        int filas = 0;
 
-        System.out.println("Ingrese numero de marcos de pagina");
-        Integer nframes = Integer.valueOf(myObj.nextLine());
+        int columnas= 0;
+
+        int tentero= 0;
+
+        int tpagina= 0;
+
+        int nframes= 0;
+
+        while (myReader.hasNextLine()) {
+
+          String data = myReader.nextLine();
+          String[] tamaños = data.split("=");
+
+          if (tamaños[0].equals("NF"))
+          { 
+            filas = Integer.valueOf(tamaños[1]);
+          }
+
+          if (tamaños[0].equals("NC"))
+          {
+            columnas = Integer.valueOf(tamaños[1]);
+          }
+
+          if (tamaños[0].equals("TE"))
+          {
+            tentero = Integer.valueOf(tamaños[1]);
+          }
+
+          if (tamaños[0].equals("TP"))
+          {
+            tpagina = Integer.valueOf(tamaños[1]);
+          }
+
+          if (tamaños[0].equals("MP"))
+          {
+            nframes = Integer.valueOf(tamaños[1]);
+          }
+
+        }
 
         paginas.CrearPaginas(filas, columnas, tentero, tpagina);
 
@@ -39,7 +85,7 @@ public class MainTest {
         Map<String, int[]> mapa = tabla.getTable();
 
         try {
-          myWriter = new FileWriter("Modo1.txt");
+          myWriter = new FileWriter("./data/Modo1.txt");
           PrintWriter printWriter = new PrintWriter(myWriter);
           printWriter.print("TP= " +tpagina+ "\n");
           printWriter.print("NF= " +filas+ "\n");
@@ -60,16 +106,26 @@ public class MainTest {
             }
           printWriter.close();
           myWriter.close();
+
         } catch (IOException e) {
           System.out.println("An error occurred.");
           e.printStackTrace();
         }
 
-        Frames mainFrames = new Frames(nframes);
-        T1 t1 = new T1("Modo1.txt",mainFrames);
-        T2 t2 = new T2(mainFrames,filas,columnas);
-        t1.start();
-        t2.start();
+        if (opcionModo == 1)
+        {
+          System.out.println("El archivo quedo guardado en la carpeta data bajo el nombre de Modo 1");
+        }
+
+        else{
+
+            Frames mainFrames = new Frames(nframes);
+            T1 t1 = new T1("./data/Modo1.txt",mainFrames);
+            T2 t2 = new T2(mainFrames,filas,columnas);
+            t1.start();
+            t2.start();
+
+        }
 
     }
 }
