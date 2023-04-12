@@ -20,8 +20,6 @@ public class T2 extends Thread{
     public void Envejecimiento()
     {
         marcos.reiniciarContador();
-        int frameDisponible = marcos.calcularFrame();
-        marcos.accederFrameDisponible(frameDisponible);
         try {
             Thread.sleep(1);
         } catch (InterruptedException e) {

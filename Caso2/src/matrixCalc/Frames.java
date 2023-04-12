@@ -1,7 +1,5 @@
 package matrixCalc;
 
-import java.util.Arrays;
-
 public class Frames {
 	private AgeCounter[] frameCounterArray;
 	private int[] framesPag;
@@ -58,7 +56,12 @@ public class Frames {
 
 		else
 		{
-			int frameDisponible = calcularFrame();
+			try {
+				wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			framesPag[frameDisponible] = nPage;
 			AgeCounter nuevoContador = new AgeCounter();
 			frameCounterArray[frameDisponible] = nuevoContador;
@@ -80,11 +83,6 @@ public class Frames {
 		return false;
 	}
 
-	public synchronized void accederFrameDisponible(int pframe)
-	{
-		frameDisponible = pframe;
-	}
-
 	public synchronized void reiniciarContador() {
 
 		for(int i = 0;i<numFrames;i++)
@@ -101,9 +99,13 @@ public class Frames {
 			contadorCiclo[i] = 0;
 
 		}
+
+		frameDisponible = calcularFrame();
+
+		notify();
 	}
 
-	public synchronized int calcularFrame()
+	public int calcularFrame()
 	{
 		int menor = 256;
 		int menorframe = 0;
