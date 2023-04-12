@@ -28,7 +28,7 @@ public class MainTest {
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Ingrese el nombre del archivo de entreda del modo 1 ( Porfavor guardar archivo en la acarpte llamada data)");
+        System.out.println("Ingrese el nombre del archivo de entreda del modo 1 ( Porfavor guardar archivo en la carpeta llamada data)");
         String archivoNombre = myObj.nextLine();
 
         System.out.println("Ahora dijite 1 si solo desea ejecutar el modo 1 o 2 si desea ejecutar el modo 2");
