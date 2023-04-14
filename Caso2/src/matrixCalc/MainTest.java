@@ -28,7 +28,7 @@ public class MainTest {
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Ingrese el nombre del archivo de entreda del modo 1 ( Porfavor guardar archivo en la carpeta llamada data)");
+        System.out.println("Ingrese el nombre del archivo de entrada del modo 1 ( Porfavor guardar archivo a recorrer en la carpeta llamada data)");
         String archivoNombre = myObj.nextLine();
 
         System.out.println("Ahora dijite 1 si solo desea ejecutar el modo 1 o 2 si desea ejecutar el modo 2");
@@ -114,11 +114,11 @@ public class MainTest {
 
         if (opcionModo == 1)
         {
-          System.out.println("El archivo quedo guardado en la carpeta data bajo el nombre de Modo 1");
+          System.out.println("El archivo quedo guardado, en la carpeta data, bajo el nombre de Modo1.txt");
         }
 
         else{
-            System.out.println("Ingrese el nombre del archivo de entreda del modo 2, si desea utilizar el archivo que genero el modo 1 Coloque solo 'Modo1.txt', sino coloque el nombre del archivo que requiera ( Porfavor guardar archivo a recorrer en la carpeta llamada data, sino es el generado por el modo 1)");
+            System.out.println("Ingrese el nombre del archivo de entrada del modo 2, si desea utilizar el archivo que genero el modo 1 Coloque solo 'Modo1.txt', sino coloque el nombre del archivo que requiera ( Porfavor guardar archivo a recorrer en la carpeta llamada data, sino es el generado por el modo 1). Ademas, escribir .txt al final del archivo");
             String archivoNombreModo2 = myObj.nextLine();
             Frames mainFrames = new Frames(nframes);
             T1 t1 = new T1("./data/" + archivoNombreModo2,mainFrames);
