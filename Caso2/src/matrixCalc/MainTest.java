@@ -90,6 +90,7 @@ public class MainTest {
           myWriter = new FileWriter("./data/Modo1.txt");
           PrintWriter printWriter = new PrintWriter(myWriter);
           printWriter.print("TP= " +tpagina+ "\n");
+          printWriter.print("TE= " +tentero+ "\n");
           printWriter.print("NF= " +filas+ "\n");
           printWriter.print("NC= " +columnas+ "\n");
           printWriter.print("NR= " +mapa.size()+ "\n");
