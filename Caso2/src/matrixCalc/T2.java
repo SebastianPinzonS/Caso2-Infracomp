@@ -4,17 +4,11 @@ public class T2 extends Thread{
 
     private Frames marcos;
 
-    private int nfila;
-
-    private int ncolumnas;
-
     private boolean fin;
 
-    public T2(Frames marcos,int fila,int columnas) 
+    public T2(Frames marcos) 
     {
         this.marcos = marcos;
-        this.nfila = fila;
-        this.ncolumnas = columnas;
     }
 
     public void Envejecimiento()

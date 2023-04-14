@@ -22,6 +22,8 @@ public class MainTest {
 
   public  static int nframes;
 
+  public  static int nframes2;
+
   public static void main(String[] args) throws FileNotFoundException {
         
         PageTable paginas = new PageTable();
@@ -120,9 +122,30 @@ public class MainTest {
         else{
             System.out.println("Ingrese el nombre del archivo de entrada del modo 2, si desea utilizar el archivo que genero el modo 1 Coloque solo 'Modo1.txt', sino coloque el nombre del archivo que requiera ( Porfavor guardar archivo a recorrer en la carpeta llamada data, sino es el generado por el modo 1). Ademas, escribir .txt al final del archivo");
             String archivoNombreModo2 = myObj.nextLine();
-            Frames mainFrames = new Frames(nframes);
+
+            File myObj2 = new File("./data/" + archivoNombreModo2);
+            Scanner myReader2 = new Scanner(myObj2);
+            while (myReader2.hasNextLine()) {
+
+                String data = myReader2.nextLine();
+                if(data.contains("=")==true)
+                {
+
+                    String[] tamaños = data.split("=");
+
+                    if (tamaños[0].equals("MP"))
+                    {
+                      nframes2 = Integer.valueOf(tamaños[1].strip());
+                      break;
+                    }
+
+                }
+
+            }
+            myReader2.close();
+            Frames mainFrames = new Frames(nframes2);
             T1 t1 = new T1("./data/" + archivoNombreModo2,mainFrames);
-            T2 t2 = new T2(mainFrames,filas,columnas);
+            T2 t2 = new T2(mainFrames);
             t1.start();
             t2.start();
 
