@@ -36,7 +36,7 @@ public class MainTest {
         System.out.println("Ahora dijite 1 si solo desea ejecutar el modo 1 o 2 si desea ejecutar el modo 2");
         Integer opcionModo = Integer.valueOf(myObj.nextLine());
 
-        File myObj1 = new File("./data/" + archivoNombre);
+        File myObj1 = new File("./Caso2/data/" + archivoNombre);
         Scanner myReader = new Scanner(myObj1);
 
         int filas = 0;
@@ -87,7 +87,7 @@ public class MainTest {
         Map<String, int[]> mapa = tabla.getTable();
 
         try {
-          myWriter = new FileWriter("./data/Modo1.txt");
+          myWriter = new FileWriter("./Caso2/data/Modo1.txt");
           PrintWriter printWriter = new PrintWriter(myWriter);
           printWriter.print("TP= " +tpagina+ "\n");
           printWriter.print("TE= " +tentero+ "\n");
@@ -124,7 +124,7 @@ public class MainTest {
             System.out.println("Ingrese el nombre del archivo de entrada del modo 2, si desea utilizar el archivo que genero el modo 1 Coloque solo 'Modo1.txt', sino coloque el nombre del archivo que requiera ( Porfavor guardar archivo a recorrer en la carpeta llamada data, sino es el generado por el modo 1). Ademas, escribir .txt al final del archivo");
             String archivoNombreModo2 = myObj.nextLine();
 
-            File myObj2 = new File("./data/" + archivoNombreModo2);
+            File myObj2 = new File("./Caso2/data/" + archivoNombreModo2);
             Scanner myReader2 = new Scanner(myObj2);
             while (myReader2.hasNextLine()) {
 
@@ -145,7 +145,7 @@ public class MainTest {
             }
             myReader2.close();
             Frames mainFrames = new Frames(nframes2);
-            T1 t1 = new T1("./data/" + archivoNombreModo2,mainFrames);
+            T1 t1 = new T1("./Caso2/data/" + archivoNombreModo2,mainFrames);
             T2 t2 = new T2(mainFrames);
             t1.start();
             t2.start();
