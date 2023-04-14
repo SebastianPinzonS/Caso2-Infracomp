@@ -118,9 +118,10 @@ public class MainTest {
         }
 
         else{
-
+            System.out.println("Ingrese el nombre del archivo de entreda del modo 2, si desea utilizar el archivo que genero el modo 1 Coloque solo 'Modo1.txt', sino coloque el nombre del archivo que requiera ( Porfavor guardar archivo a recorrer en la carpeta llamada data, sino es el generado por el modo 1)");
+            String archivoNombreModo2 = myObj.nextLine();
             Frames mainFrames = new Frames(nframes);
-            T1 t1 = new T1("./data/Modo1.txt",mainFrames);
+            T1 t1 = new T1("./data/" + archivoNombreModo2,mainFrames);
             T2 t2 = new T2(mainFrames,filas,columnas);
             t1.start();
             t2.start();
