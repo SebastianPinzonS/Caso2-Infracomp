@@ -56,27 +56,27 @@ public class MainTest {
 
           if (tamaños[0].equals("NF"))
           { 
-            filas = Integer.valueOf(tamaños[1]);
+            filas = Integer.valueOf(tamaños[1].strip());
           }
 
           if (tamaños[0].equals("NC"))
           {
-            columnas = Integer.valueOf(tamaños[1]);
+            columnas = Integer.valueOf(tamaños[1].strip());
           }
 
           if (tamaños[0].equals("TE"))
           {
-            tentero = Integer.valueOf(tamaños[1]);
+            tentero = Integer.valueOf(tamaños[1].strip());
           }
 
           if (tamaños[0].equals("TP"))
           {
-            tpagina = Integer.valueOf(tamaños[1]);
+            tpagina = Integer.valueOf(tamaños[1].strip());
           }
 
           if (tamaños[0].equals("MP"))
           {
-            nframes = Integer.valueOf(tamaños[1]);
+            nframes = Integer.valueOf(tamaños[1].strip());
           }
 
         }

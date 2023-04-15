@@ -37,7 +37,7 @@ public class T1 extends Thread{
 
                     String[] pvirtual = data.split(",");
 
-                    int npagina = Integer.valueOf(pvirtual[3]);
+                    int npagina = Integer.valueOf(pvirtual[3].strip());
 
                     if (marcos.inPagina(npagina)==false)
                     {
